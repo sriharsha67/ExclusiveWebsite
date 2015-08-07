@@ -1,0 +1,27 @@
+<div id="land">
+  <div class="vcenter">
+    <h1>Exlusive. Deals. Every. 60. Secconds.</h1>
+    <p>
+      <% if @seconds_left > 0 %>
+        You need to wait for <%= @seconds_left %> seconds. <br>
+        Join the Queue...
+      <% else %>
+        Yey! No waiting! Claim before someone pushes you into a queue!!
+      <% end %>
+    </p>
+    <div id="waiting-timer"></div>
+    <%= simple_form_for @user do |f| %>
+      <%= f.input :name, label: false, placeholder: "Your Name.." %>
+      <%= f.input :email, label: false, placeholder: "Your Email..." %>
+      <%= f.submit "Join the Queue", class: "btn" %>
+    <% end %>
+  </div>
+</div>
+<% if @seconds_left > 0 %>
+  <script type="text/javascript">
+    var clock = $('#waiting-timer').FlipClock(<%= @seconds_left %>, {
+      countdown: true,
+      clockFace: 'MinuteCounter'
+    });
+  </script>
+<% end %>
