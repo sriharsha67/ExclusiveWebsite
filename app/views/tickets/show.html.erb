@@ -14,3 +14,15 @@
     });
   </script>
 <% end %>
+
+<script type="text/javascript">
+  $(window).on('beforeunload', function() {
+    alert("Are you sure you want to leave? We will have to cry!!");
+    console.log("Closed!!");
+    $.ajax({
+      url: '<%= ticket_path(@ticket) %>',
+      method: 'PUT',
+      data: {'closed' : true}
+    });
+  });
+</script>

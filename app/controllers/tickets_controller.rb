@@ -1,8 +1,9 @@
 class TicketsController < ApplicationController
+  before_action :fetch_ticket, only: [:show, :update]
+
   def create
     @ticket = Ticket.new(ticket_params)
     if @ticket.save
-      @ticket.activate! unless Ticket.waiting.any?
       redirect_to ticket_path(@ticket, code: @ticket.code)
     else
       redirect_to root_path, alert: "Please enter your name and email"
@@ -10,12 +11,22 @@ class TicketsController < ApplicationController
   end
 
   def show
-    @ticket = Ticket.find(params[:id])
     deny_access! if @ticket.code != params[:code]
     @seconds_left = CurrentTicket.seconds_left
+    @ticket.mark_waiting!
+  end
+
+  def update
+    if params[:closed]
+      @ticket.mark_waiting!(false)
+    end
   end
 
 private
+  def fetch_ticket
+    @ticket = Ticket.find(params[:id])
+  end
+  
   def ticket_params
     params.require(:ticket).permit(:name, :email)
   end
