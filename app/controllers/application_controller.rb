@@ -7,4 +7,8 @@ class ApplicationController < ActionController::Base
   def current_ticket
     @current_ticket ||= CurrentTicket.fetch
   end
+
+  def deny_access!
+    redirect_to root_path, alert: "Access Denied!"
+  end
 end
