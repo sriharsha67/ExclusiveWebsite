@@ -1,0 +1,16 @@
+<div id="ticket">
+  <h1>You are Ticket #<%= @ticket.ticket_no %></h1>
+  <%= image_tag "waiting.gif", id: "waiting-pic" %>
+  <% if current_ticket.ticket %>
+    <h2>Currently serving Ticket #<%= current_ticket.ticket.ticket_no %></h2>
+  <% end %>
+  <div id="waiting-timer"></div>
+</div>
+<% if @seconds_left > 0 %>
+  <script type="text/javascript">
+    var clock = $('#waiting-timer').FlipClock(<%= @seconds_left %>, {
+      countdown: true,
+      clockFace: 'MinuteCounter'
+    });
+  </script>
+<% end %>
