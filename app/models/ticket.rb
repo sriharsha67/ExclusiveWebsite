@@ -1,3 +1,16 @@
+# == Schema Information
+#
+# Table name: tickets
+#
+#  id         :integer          not null, primary key
+#  name       :string
+#  email      :string
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#  ticket_no  :integer
+#  waiting    :boolean          default(TRUE)
+#
+
 class Ticket < ActiveRecord::Base
   scope :waiting, -> {where(waiting: true)}
 

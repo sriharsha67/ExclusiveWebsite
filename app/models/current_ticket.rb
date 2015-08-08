@@ -1,3 +1,14 @@
+# == Schema Information
+#
+# Table name: current_tickets
+#
+#  id           :integer          not null, primary key
+#  ticket_id    :integer
+#  activated_at :datetime
+#  created_at   :datetime         not null
+#  updated_at   :datetime         not null
+#
+
 class CurrentTicket < ActiveRecord::Base
   # This is the number of seconds between two tickets activations
   TICKET_INTERVAL = 60
