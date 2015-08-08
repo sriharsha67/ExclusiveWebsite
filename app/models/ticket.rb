@@ -9,6 +9,8 @@
 #  updated_at :datetime         not null
 #  ticket_no  :integer
 #  waiting    :boolean          default(TRUE)
+#  code       :string
+#  claimed    :boolean
 #
 
 class Ticket < ActiveRecord::Base

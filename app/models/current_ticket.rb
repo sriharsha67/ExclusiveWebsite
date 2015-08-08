@@ -5,6 +5,8 @@
 #  id           :integer          not null, primary key
 #  ticket_id    :integer
 #  activated_at :datetime
+#  created_at   :datetime         not null
+#  updated_at   :datetime         not null
 #
 
 class CurrentTicket < ActiveRecord::Base
