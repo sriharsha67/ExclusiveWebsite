@@ -18,6 +18,6 @@ set :output, "#{path}/log/cron_log.log"
 # end
 
 # Learn more: http://github.com/javan/whenever
-every 1.minutes do
+every 10.minutes do
   rake "activate_ticket"
 end

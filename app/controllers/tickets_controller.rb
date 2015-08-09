@@ -14,6 +14,7 @@ class TicketsController < ApplicationController
     deny_access! if @ticket.code != params[:code]
     @seconds_left = CurrentTicket.seconds_left
     @ticket.mark_waiting!
+    @between_people = Ticket.waiting.where('ticket_no < ?', @ticket.ticket_no).count
   end
 
   def update
